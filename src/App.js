@@ -3,6 +3,7 @@ import theme from "./theme.js";
 import { useEffect, useState } from "react";
 import { Box, Stack } from "@mui/material";
 import Navigation from'./Components/Navigation.jsx'
+import Content from "./Components/Content.jsx";
 
 
 function App() {
@@ -19,8 +20,10 @@ function App() {
       setGamesList(data)
     }
 
-    // fetchGames()
+    fetchGames()
   }, [])
+
+  console.log(gamesList)
 
   return (
     <ThemeProvider theme={theme} >
@@ -28,7 +31,9 @@ function App() {
       <Box width={{xs: '100%', md: '25%'}}>
         <Navigation />
       </Box>
-      <Box  width={{xs: '25%', md: '75%'}}>Content</Box>
+      <Box  width={{xs: '100%', md: '75%'}}>
+        <Content gamesList={gamesList} />
+      </Box>
     </Stack>
     </ThemeProvider>
   );
