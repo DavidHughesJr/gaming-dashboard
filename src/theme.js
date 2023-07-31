@@ -5,7 +5,7 @@ const theme = createTheme({
   typography: {
     allVariants: {
       color: grey[100],
-      fontFamily: "Impact, fantasy",
+      fontFamily: "monospace",
     },
   },
   palette: {

@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Typography from '@mui/material/Typography';
-import { Today, Whatshot, CalendarMonth, Menu, Search } from '@mui/icons-material';
+import { Today, Whatshot, CalendarMonth, Menu, Search, SportsEsports } from '@mui/icons-material';
 
 
 export default function IconMenu() {
@@ -74,7 +74,9 @@ export default function IconMenu() {
                         <Typography
                             variant="h6"
                         >
-                            GameBase
+                            <Stack >
+                                <SportsEsports />
+                            </Stack>
                         </Typography>
                         <Stack p={.5} position='absolute' right='0' mr={2} sx={{backgroundColor: 'primary.light', borderRadius: '5px'}} direction='row' justifyContent='center' alignItems='center'>
                             <Search />
