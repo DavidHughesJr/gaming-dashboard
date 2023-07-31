@@ -1,8 +1,9 @@
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme.js";
 import { useEffect, useState } from "react";
-import { Box, Stack } from "@mui/material";
-import Navigation from'./Components/Navigation.jsx'
+import { Container, Box, Stack } from "@mui/material";
+import Navigation from './Components/SideNav.jsx'
+import TopNav from "./Components/TopNav.jsx";
 import Content from "./Components/Content.jsx";
 
 
@@ -15,7 +16,7 @@ function App() {
 
   useEffect(() => {
     const fetchGames = async () => {
-      const res = await fetch( `https://api.rawg.io/api/games?key=${APIKEY}`)
+      const res = await fetch(`https://api.rawg.io/api/games?key=${APIKEY}`)
       const data = await res.json()
       setGamesList(data)
     }
@@ -27,14 +28,17 @@ function App() {
 
   return (
     <ThemeProvider theme={theme} >
-    <Stack flexDirection={{ md: "row", sm: "column" }} justifyContent='space-between'>
-      <Box width={{xs: '100%', md: '25%'}}>
-        <Navigation />
-      </Box>
-      <Box  width={{xs: '100%', md: '75%'}}>
-        <Content gamesList={gamesList} />
-      </Box>
-    </Stack>
+      <TopNav />
+      <Container maxWidth='xl'>
+        <Stack flexDirection={{ md: "row", sm: "column" }} justifyContent='space-between'>
+          <Box width={{ xs: '100%', md: '20%', xl: '15%' }} mr={5}>
+            <Navigation />
+          </Box>
+          <Box width={{ xs: '100%', md: '80%', xl: '85%' }}>
+            <Content gamesList={gamesList} />
+          </Box>
+        </Stack>
+      </Container>
     </ThemeProvider>
   );
 }

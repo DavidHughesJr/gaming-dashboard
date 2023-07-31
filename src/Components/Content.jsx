@@ -20,7 +20,7 @@ export default function Content({ gamesList }) {
         <Container maxWidth="xl">
             <Box mt={5} sx={{ flexGrow: 1 }}>
                 <Typography mb={3} variant='h4'> Content </Typography>
-                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12, lg: 16, xl: 20 }}>
 
                     {gamesList?.results?.map((item, index) => (
                         <Grid xs={2} sm={4} md={4} key={index}>

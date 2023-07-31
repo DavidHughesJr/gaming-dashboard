@@ -5,12 +5,21 @@ const theme = createTheme({
   typography: {
     allVariants: {
       color: grey[100],
-      fontFamily: "monospace",
+      fontFamily: "serif",
     },
   },
   palette: {
     primary: blueGrey,
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 540,
+      md: 780,
+      lg: 1280,
+      xl: 1920,
+    }
+  }
 
   // components: {
   //   // Name of the component
