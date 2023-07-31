@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import { Today, Whatshot, CalendarMonth, Menu, Search, SportsEsports } from '@mui/icons-material';
 
 
-export default function IconMenu() {
+export default function Navigation() {
 
     const NavLink = ({ icon, title, link }) => {
         return (
