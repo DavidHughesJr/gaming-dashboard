@@ -34,7 +34,7 @@ export default function Navigation() {
             <Typography variant='h5' pb={10} > GameBase </Typography>
             <MenuList>
                 <Link underline="none" color='white'> <Typography variant='h5' fontWeight='bold' > Home </Typography> </Link>
-                <NavLink icon={<Whatshot />} title={'Most Popular'} link={'/home'} />
+                <NavLink icon={<Whatshot />} title={'Trending'} link={'/home'} />
                 <Typography variant='h5' pt={2} fontWeight='bold'> New Releases </Typography>
                 <NavLink icon={<Today />} title={'This Week'} link={'/home'} />
                 <NavLink icon={<CalendarMonth />} title={'Next 30 Days'} link={'/home'} />

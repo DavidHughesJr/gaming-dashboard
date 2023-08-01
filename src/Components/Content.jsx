@@ -1,7 +1,7 @@
 import { Box, Stack, Container, Unstable_Grid2 as Grid, Typography, Card, CardContent, CardMedia, CardActions, Button } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function Content({ gamesList }) {
+export default function Content({ title,gamesList }) {
 
 
     const platformImages = gamesList?.results?.map((item, index) => {
@@ -17,29 +17,28 @@ export default function Content({ gamesList }) {
 
 
     return (
-        <Container maxWidth="xl">
-            <Box mt={5} sx={{ flexGrow: 1 }}>
-                <Typography mb={3} variant='h4'> Content </Typography>
-                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12, lg: 16, xl: 20 }}>
 
+            <Box mt={5} sx={{ flexGrow: 1 }} >
+                <Typography mb={3} variant='h4'> {title} </Typography>
+                <Grid container spacing={2} justifyContent='center' columns={{ xs: 3, sm: 8, md: 8, lg: 12, xl: 16, xxl: 20 }}>
                     {gamesList?.results?.map((item, index) => (
                         <Grid xs={2} sm={4} md={4} key={index}>
-                            <Card sx={{ maxWidth: 345, backgroundColor: '#2f3137' }}>
+                            <Card sx={{backgroundColor: '#2f3137' }}>
                                 <CardMedia
-                                    sx={{ height: 200 }}
+                                    sx={{ height: 250 }}
                                     image={item.background_image}
                                     title={item.slug}
                                 />
                                 <CardContent>
                                     <Typography mb={2} variant='h5'>
-                                        {item.name}
+                                        {item?.name}
                                     </Typography>
                                     <Stack direction='row' justifyContent='space-between'>
                                         <Typography variant="subtitle2">
-                                            {item.esrb_rating.name}
+                                            {item.esrb_rating?.name}
                                         </Typography>
                                         <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-                                            <CircularProgress variant="determinate" value={item.metacritic} />
+                                            <CircularProgress variant="determinate" value={item?.metacritic} />
                                             <Box
                                                 sx={{
                                                     top: 0,
@@ -53,7 +52,7 @@ export default function Content({ gamesList }) {
                                                 }}
                                             >
                                                 <Typography variant="caption" component="div">
-                                                    {item.metacritic}
+                                                    {item?.metacritic}
                                                 </Typography>
                                             </Box>
                                         </Box>
@@ -68,6 +67,6 @@ export default function Content({ gamesList }) {
                     ))}
                 </Grid>
             </Box>
-        </Container>
+       
     )
 }
