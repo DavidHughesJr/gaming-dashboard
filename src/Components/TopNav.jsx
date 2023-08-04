@@ -1,16 +1,16 @@
 import * as React from 'react';
 import {
-    AppBar, Box, IconButton, Link, Toolbar,
-    MenuList,
+    Box, IconButton, Link, Toolbar,
+    Button,
     InputBase,
     Stack,
-    styled
+    styled,
+    ListItemText,
+    MenuItem,
+    Typography
 } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
-import { Today, Whatshot, CalendarMonth, Menu, Search, SportsEsports } from '@mui/icons-material';
+import { Today, Whatshot, CalendarMonth, Menu, Search, SportsEsports, Favorite } from '@mui/icons-material';
 
 
 export default function Navigation() {
@@ -37,9 +37,15 @@ export default function Navigation() {
         '& .MuiInputBase-input': {
             transition: theme.transitions.create('width'),
             [theme.breakpoints.up('sm')]: {
-                width: '22rem',
+                width: '15rem',
                 '&:focus': {
-                    width: '23rem',
+                    width: '16rem',
+                },
+            },
+            [theme.breakpoints.up('lg')]: {
+                width: '40rem',
+                '&:focus': {
+                    width: '41rem',
                 },
             },
         },
@@ -48,29 +54,35 @@ export default function Navigation() {
 
     return (
         <Box mt={2} >
-                <Toolbar >
-                    <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="white"
-                            aria-label="open drawer"
-                            sx={{ mr: 2, color: 'white' }}
-                        >
-                            <Menu />
+            <Toolbar >
+                <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="white"
+                        aria-label="open drawer"
+                        sx={{ color: 'white' }}
+                    >
+                        <Menu />
 
-                        </IconButton>
-                    </Box>
-                    <Stack mr={1} width='100%' direction='row' justifyContent='space-between' alignItems='center'>
-                        <SportsEsports sx={{color: 'white'}} />
+                    </IconButton>
+                </Box>
+                <Stack mr={1} gap={1} width='100%' direction='row' justifyContent='space-between' alignItems='center'>
+                    <SportsEsports sx={{ color: 'white' }} />
                     <Stack sx={{ backgroundColor: '#2f3137', color: 'white', paddingLeft: '5px', borderRadius: '5px' }} direction='row' justifyContent='center' alignItems='center'>
-                            <Search />
-                            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </Stack>
+                        <Search />
+                        <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }}
+                        />
                     </Stack>
-                </Toolbar>
-          
+                    <Stack flexDirection='row' alignItems='center' gap={2}>
+                        <Button variant='contained'>
+                            <Typography pr={1} variant='subtitle'> Saves </Typography>
+                           <Favorite />
+                        </Button>                        
+                    </Stack>
+                </Stack>
+            </Toolbar>
+
         </Box >
     );
 }

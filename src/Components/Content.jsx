@@ -19,7 +19,7 @@ export default function Content({ title,gamesList }) {
     return (
 
             <Box mt={5} sx={{ flexGrow: 1 }} >
-                <Typography mb={3} variant='h4'> {title} </Typography>
+                <Typography mb={3} variant='h2'> {title} </Typography>
                 <Grid container spacing={2} justifyContent='center' columns={{ xs: 3, sm: 8, md: 8, lg: 12, xl: 16, xxl: 20 }}>
                     {gamesList?.results?.map((item, index) => (
                         <Grid xs={2} sm={4} md={4} key={index}>

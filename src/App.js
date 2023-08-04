@@ -5,6 +5,9 @@ import { Container, Box, Stack } from "@mui/material";
 import Navigation from './Components/SideNav.jsx'
 import TopNav from "./Components/TopNav.jsx";
 import Content from "./Components/Content.jsx";
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import Root from './Root.js'
+import { ErrorBoundary } from "./Components/Pages/ErrorBoundary.jsx";
 
 
 function App() {
@@ -39,33 +42,35 @@ function App() {
       setGamesList(data)
     }
 
-    fetchGames()
+    // fetchGames()
   }, [])
 
   console.log(gamesList)
 
- 
+
 
   console.log(thisDate)
   console.log(ThirtyDays)
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Root />} ErrorBoundary={ErrorBoundary}>
+        <Route path="/home" index element={<Content title={'Trending'} gamesList={gamesList} />} />
+        <Route path="/releases" index element={<Content title={'Trending'} gamesList={gamesList} />} />
+        <Route path="/games" index element={<Content title={'Trending'} gamesList={gamesList} />} />
+      </Route>
+
+    )
+  )
 
 
 
 
 
   return (
-    <ThemeProvider theme={theme} >
-      <TopNav />
-      <Container maxWidth='xxl'>
-        <Stack flexDirection={{ md: "row", sm: "column" }} justifyContent='space-between'>
-          <Box width={{ xs: '100%', md: '20%', xl: '15%' }} mr={5}>
-            <Navigation />
-          </Box>
-          <Box width={{ xs: '100%', md: '80%', xl: '85%' }}>
-            <Content title={'Trending'} gamesList={gamesList}  />
-          </Box>
-        </Stack>
-      </Container>
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router}>
+      </RouterProvider>
     </ThemeProvider>
   );
 }
