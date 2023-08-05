@@ -1,76 +1,60 @@
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme.js";
 import { useEffect, useState } from "react";
-import { Container, Box, Stack } from "@mui/material";
-import Navigation from './Components/SideNav.jsx'
-import TopNav from "./Components/TopNav.jsx";
 import Content from "./Components/Content.jsx";
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import Root from './Root.js'
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import Root from "./Components/Pages/Root.jsx";
 import { ErrorBoundary } from "./Components/Pages/ErrorBoundary.jsx";
+import rawgApi, { order, dates } from "./Components/Api/rawgConfig.js";
+import { useParams, useLocation } from "react-router-dom";
 
 
 function App() {
-  // https://api.rawg.io/api/platforms?key=YOUR_API_KEY
-  // https://api.rawg.io/api/games/{id}/movies
-  const APIKEY = "c2274413f3b04504ab022813fb50a432";
-
-  const date = new Date()
-  const formattedDate = Intl.DateTimeFormat("en-US", {
-    dateStyle: "short",
-  }).format(date).replaceAll('/', '-');
-
-  var priorDate = new Date(new Date().setDate(date.getDate() - 7));
-
-  const formattedDate2 = Intl.DateTimeFormat("en-US", {
-    dateStyle: "short",
-  }).format(priorDate).replaceAll('/', '-');
-
-  const thisDate = new Intl.DateTimeFormat("fr-CA", { year: "numeric", month: "2-digit", day: "2-digit" }).format(Date.now())
-  const ThirtyDays = new Intl.DateTimeFormat("fr-CA", { year: "numeric", month: "2-digit", day: "2-digit" }).format(priorDate)
 
 
+  const [allGames, setAllGames] = useState([]);
 
-
-  const [gamesList, setGamesList] = useState([])
-  const [genreList, setGenreList] = useState([])
 
   useEffect(() => {
-    const fetchGames = async () => {
-      const res = await fetch(`https://api.rawg.io/api/games?dates=2023-01-01,2023-12-31&ordering=-rating&key=${APIKEY}`)
-      const data = await res.json()
-      setGamesList(data)
-    }
+    const fetchGamesData = async () => {
+      const resAllGames = await rawgApi.getGames(dates.today, order.added);
+      const allGamesData = await resAllGames.json();
+      setAllGames(allGamesData);
+    };
 
-    // fetchGames()
-  }, [])
-
-  console.log(gamesList)
-
-
-
-  console.log(thisDate)
-  console.log(ThirtyDays)
+    fetchGamesData();
+  }, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />} ErrorBoundary={ErrorBoundary}>
-        <Route path="/home" index element={<Content title={'Trending'} gamesList={gamesList} />} />
-        <Route path="/releases" index element={<Content title={'Trending'} gamesList={gamesList} />} />
-        <Route path="/games" index element={<Content title={'Trending'} gamesList={gamesList} />} />
+        <Route
+          index
+          element={<Content title={allGames.seo_title} listing={allGames} />}
+        />
+        <Route
+          path="/releases"
+          index
+          element={<Content title={"Trending"} />}
+        />
+        <Route path="/games" index element={<Content title={"Trending"} />} />
+        <Route
+          path="/genre/:name"
+          index
+          element={<Content />}
+        />
       </Route>
-
     )
-  )
-
-
-
-
+  );
 
   return (
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router}>
-      </RouterProvider>
+      <RouterProvider router={router}></RouterProvider>
     </ThemeProvider>
   );
 }

@@ -4,3 +4,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.genreIcons {
+  border-radius: 5px;
+  min-height: 25px;
+  max-height: 25px;
+  width: 30px;
+}
