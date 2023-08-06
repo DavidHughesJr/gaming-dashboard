@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import rawgApi from "../Api/rawgConfig";
+import rawgApi from "../api/rawgConfig";
 import { Box, Container, Stack } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import TopNav from '../Common/TopNav'
-import SideNav from '../Common/SideNav'
+import TopNav from '../layout/TopNav'
+import SideNav from '../layout/SideNav'
 
 export default function Root() {
 

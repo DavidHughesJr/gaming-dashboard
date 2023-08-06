@@ -1,4 +1,3 @@
-import { PanoramaSharp } from '@mui/icons-material';
 import { Box, Stack, Unstable_Grid2 as Grid, Typography, Card, CardContent, CardMedia, CardActions, Button } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress';
 import { useParams } from 'react-router-dom';
@@ -6,12 +5,12 @@ import { useParams } from 'react-router-dom';
 
 export default function Content({ title, listing }) {
 
-    let params = useParams()
+
 
     return (
 
         <Box mt={5} sx={{ flexGrow: 1 }} >
-            <Typography mb={3} variant='h2'> {title ? title : params.name.charAt(0).toUpperCase() + params.name.slice(1)} </Typography>
+            <Typography mb={3} variant='h2'> {title} </Typography>
             <Grid container spacing={2} justifyContent='center' columns={{ xs: 3, sm: 8, md: 8, lg: 12, xl: 16, xxl: 20 }}>
                 {listing?.results?.map((item, index) => (
                     <Grid xs={2} sm={4} md={4} key={index}>

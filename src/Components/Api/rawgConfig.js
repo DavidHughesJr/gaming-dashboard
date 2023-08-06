@@ -12,7 +12,6 @@ export const order = {
   rating: "-rating",
 };
 
-console.log(datesConfig.monthAgo)
 
 const rawgApi = {
   getGames: (dates, order, page) => {

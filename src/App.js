@@ -1,30 +1,46 @@
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme.js";
 import { useEffect, useState } from "react";
-import Content from "./Components/Content.jsx";
+import Content from "./Components/common/Content.jsx";
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Root from "./Components/Pages/Root.jsx";
-import { ErrorBoundary } from "./Components/Pages/ErrorBoundary.jsx";
-import rawgApi, { order, dates } from "./Components/Api/rawgConfig.js";
+import Root from "./Components/pages/Root.jsx";
+import { ErrorBoundary } from "./Components/pages/ErrorBoundary.jsx";
+import rawgApi, { order, dates } from "./Components/api/rawgConfig.js";
 import { useParams, useLocation } from "react-router-dom";
+import GenrePage from "./Components/pages/ListingsPage.jsx";
 
 
 function App() {
 
+  let userId  = useParams();
 
   const [allGames, setAllGames] = useState([]);
+  const [releaseDateGame, setReleaseDateGame] = useState([])
+  const [genre, setGenre] = useState([])
+  const [date, setDate] = useState(dates.today)
+
+
 
 
   useEffect(() => {
     const fetchGamesData = async () => {
       const resAllGames = await rawgApi.getGames(dates.today, order.added);
       const allGamesData = await resAllGames.json();
+
+      const resRelease = await rawgApi.getGames(dates.today, order.added)
+      const releaseData = await resRelease.json()
+
+      const resGenre = await rawgApi.getGames(dates.today, order.added)
+      const genreData = await resGenre.json()
+
       setAllGames(allGamesData);
+      setReleaseDateGame(releaseData)
+      setGenre(genreData)
     };
 
     fetchGamesData();
@@ -38,15 +54,14 @@ function App() {
           element={<Content title={allGames.seo_title} listing={allGames} />}
         />
         <Route
-          path="/releases"
+          path="/releases/:days"
           index
-          element={<Content title={"Trending"} />}
+          element={<GenrePage />}
         />
-        <Route path="/games" index element={<Content title={"Trending"} />} />
         <Route
           path="/genre/:name"
           index
-          element={<Content />}
+          element={<GenrePage />}
         />
       </Route>
     )
