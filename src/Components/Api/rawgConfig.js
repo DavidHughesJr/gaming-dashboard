@@ -1,21 +1,27 @@
 import { apiConfig } from "./apiConfig";
 import { datesConfig } from "./datesConfig";
 
-export const dates = {
-  today: datesConfig.today,
-  thisWeek: datesConfig.thisWeek,
-  monthAgo: datesConfig.monthAgo,
-};
 
 export const order = {
   added: "-added",
   rating: "-rating",
 };
 
+export const dates = {
+  today: datesConfig.today,
+  thisWeek: datesConfig.thisWeek,
+  monthAgo: datesConfig.monthAgo,
+};
+
+
 
 const rawgApi = {
-  getGames: (dates, order, page) => {
-    const url = `${apiConfig.baseUrl}games?dates=${dates[dates]}&ordering=${order[order]}&key=${apiConfig.apiKey}`;
+  getGames: (order, dates, page) => {
+    const url = `${apiConfig.baseUrl}games?ordering=${order[order]}&dates=${dates[dates]}&key=${apiConfig.apiKey}`;
+    return fetch(url);
+  },
+  getGamesByGenre: (genre, order, dates = '', page) => {
+    const url = `${apiConfig.baseUrl}games?genres=${genre}&ordering=${order[order]}&dates=${dates[dates]}&key=${apiConfig.apiKey}`;
     return fetch(url);
   },
   getGenres: () => {

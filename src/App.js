@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./theme.js";
+import { theme } from "./theme.js";
 import { useEffect, useState } from "react";
 import Content from "./Components/common/Content.jsx";
 import {
@@ -8,39 +8,31 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import Root from "./Components/pages/Root.jsx";
-import { ErrorBoundary } from "./Components/pages/ErrorBoundary.jsx";
+import Root from "./Components/router/Root.jsx";
+import { ErrorBoundary } from "./Components/router/ErrorBoundary.jsx";
 import rawgApi, { order, dates } from "./Components/api/rawgConfig.js";
-import { useParams, useLocation } from "react-router-dom";
-import GenrePage from "./Components/pages/ListingsPage.jsx";
-
+import GenrePage from "./Components/pages/GenrePage.jsx";
 
 function App() {
-
-  let userId  = useParams();
-
   const [allGames, setAllGames] = useState([]);
-  const [releaseDateGame, setReleaseDateGame] = useState([])
-  const [genre, setGenre] = useState([])
-  const [date, setDate] = useState(dates.today)
-
-
-
+  const [releaseDateGame, setReleaseDateGame] = useState([]);
+  const [genre, setGenre] = useState([]);
+  const [date, setDate] = useState(dates.today);
 
   useEffect(() => {
     const fetchGamesData = async () => {
-      const resAllGames = await rawgApi.getGames(dates.today, order.added);
+      const resAllGames = await rawgApi.getGames(order.added, dates.today);
       const allGamesData = await resAllGames.json();
 
-      const resRelease = await rawgApi.getGames(dates.today, order.added)
-      const releaseData = await resRelease.json()
+      const resRelease = await rawgApi.getGames(dates.today, order.added);
+      const releaseData = await resRelease.json();
 
-      const resGenre = await rawgApi.getGames(dates.today, order.added)
-      const genreData = await resGenre.json()
+      const resGenre = await rawgApi.getGames(dates.today, order.added);
+      const genreData = await resGenre.json();
 
       setAllGames(allGamesData);
-      setReleaseDateGame(releaseData)
-      setGenre(genreData)
+      setReleaseDateGame(releaseData);
+      setGenre(genreData);
     };
 
     fetchGamesData();
@@ -53,16 +45,8 @@ function App() {
           index
           element={<Content title={allGames.seo_title} listing={allGames} />}
         />
-        <Route
-          path="/releases/:days"
-          index
-          element={<GenrePage />}
-        />
-        <Route
-          path="/genre/:name"
-          index
-          element={<GenrePage />}
-        />
+        <Route path="releases/:dates" index element={<GenrePage />} />
+        <Route path="games/:genre" index element={<GenrePage />} />
       </Route>
     )
   );

@@ -10,7 +10,6 @@ export default function Root() {
 
     const [genres, setGenres] = useState([]);
 
-    
 
     useEffect(() => {
 

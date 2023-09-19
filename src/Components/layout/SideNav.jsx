@@ -28,7 +28,7 @@ export default function SideNav({ genres }) {
                 <NavLink icon={<Whatshot />} title={'Popular'} link={'/popular'} />
                 <NavLink icon={<Whatshot />} title={'Top Rated'} link={'/top-rated'} />
                 <Typography variant='h5' pt={2} fontWeight='bold'> New Releases </Typography>
-                <NavLink icon={<Today />} title={'Next 7 Days'} link={'releases/:this-week'} />
+                <NavLink icon={<Today />} title={'Next 7 Days'} link={'releases/this-week'} />
                 <NavLink icon={<CalendarMonth />} title={'Next 30 Days'} link={'/this-month'} />
                 <NavLink icon={<CalendarMonth />} title={'This Year'} link={'/this-year'} />
                 <Typography variant='h5' pt={2} fontWeight='bold'> Top Charts </Typography>
@@ -37,7 +37,7 @@ export default function SideNav({ genres }) {
                 <NavLink icon={<CalendarMonth />} title={'Last Year'} link={'/last-year'} />
                 <Typography variant='h5' pt={2} fontWeight='bold'> Genre </Typography>
                 {
-                    genres?.map((genre) => <NavLink key={genre.name} icon={<> <img className='genreIcons' src={genre.image_background} alt='img' />  </>} title={genre.name} link={`genre/${genre.slug}`} />)
+                    genres?.map((genre) => <NavLink key={genre.name} icon={<> <img className='genreIcons' src={genre.image_background} alt='img' />  </>} title={genre.name} link={`games/${genre.slug}`} />)
                 }
             </MenuList>
         </Box>

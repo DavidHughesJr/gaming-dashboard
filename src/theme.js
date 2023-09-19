@@ -1,36 +1,45 @@
 import { createTheme } from "@mui/material/styles";
-import { blueGrey, grey } from "@mui/material/colors";
+import { blue, grey, green } from "@mui/material/colors";
 
-const theme = createTheme({
-  typography: {
-    allVariants: {
-      color: grey[100],
-      fontFamily: "serif",
+export const theme = createTheme({
+  palette: {
+    palette: {
+      background: {
+        default: "#222225",
+      },
+      primary: {
+        main: blue[500],
+      },
+      text: {
+        primary: grey[100],
+      },
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 540,
+        md: 780,
+        lg: 1280,
+        xl: 1540,
+        xxl: 1920,
+      },
     },
   },
-  palette: {
-    primary: blueGrey,
-  },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 540,
-      md: 780,
-      lg: 1280,
-      xl: 1540,
-      xxl: 1920,
-    }
-  }
-
-  // components: {
-  //   // Name of the component
-  //   MuiButtonBase: {
-  //     defaultProps: {
-  //       // The props to change the default for.
-  //       disableRipple: true, // No more ripple, on the whole application 💣!
-  //     },
-  //   },
-  // },
 });
 
-export default theme;
+// export const themeLight = createTheme({
+//   palette: {
+//     background: {
+//       default: "#222222"
+//     },
+//     primary: {
+//       main: blue[600],
+//     },
+//     secondary: {
+//       main: blue[400],
+//     },
+//     text: {
+//       primary: grey[100]
+//     }
+//   }
+// });
