@@ -2,10 +2,9 @@ import { createTheme } from "@mui/material/styles";
 import { blue, grey, green } from "@mui/material/colors";
 
 export const theme = createTheme({
-  palette: {
     palette: {
       background: {
-        default: "#222225",
+        default: "#e4f0e2"
       },
       primary: {
         main: blue[500],
@@ -24,7 +23,6 @@ export const theme = createTheme({
         xxl: 1920,
       },
     },
-  },
 });
 
 // export const themeLight = createTheme({
