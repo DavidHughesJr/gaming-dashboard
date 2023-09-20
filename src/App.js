@@ -48,7 +48,7 @@ function App() {
           element={<Content title={allGames.seo_title} listing={allGames} />}
         />
         <Route path="releases/:dates" element={<GenrePage />} />
-        <Route path="games/:genre" element={<GenrePage />} />
+        <Route path="games/:genre"   element={<GenrePage />} />
       </Route>
     )
   );

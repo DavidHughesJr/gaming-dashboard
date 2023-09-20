@@ -23,6 +23,7 @@ function GenrePage() {
     return (
         <>
             <Content listing={genreData} />
+            
         </>
     )
 }
