@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "./theme.js";
+import CssBaseline from "@mui/material/CssBaseline";
+import { theme} from "./theme.js";
 import { useEffect, useState } from "react";
 import Content from "./Components/common/Content.jsx";
 import {
@@ -18,6 +19,7 @@ function App() {
   const [releaseDateGame, setReleaseDateGame] = useState([]);
   const [genre, setGenre] = useState([]);
   const [date, setDate] = useState(dates.today);
+
 
   useEffect(() => {
     const fetchGamesData = async () => {
@@ -45,14 +47,15 @@ function App() {
           index
           element={<Content title={allGames.seo_title} listing={allGames} />}
         />
-        <Route path="releases/:dates" index element={<GenrePage />} />
-        <Route path="games/:genre" index element={<GenrePage />} />
+        <Route path="releases/:dates" element={<GenrePage />} />
+        <Route path="games/:genre" element={<GenrePage />} />
       </Route>
     )
   );
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <RouterProvider router={router}></RouterProvider>
     </ThemeProvider>
   );

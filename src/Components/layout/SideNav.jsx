@@ -19,15 +19,24 @@ export default function SideNav({ genres }) {
         )
     }
 
+    const games = ['All Games','Popularity', 'Top Rated']
+
+    const releases = ['New Releases']
+    const releaseIcons = [<Today />, <CalendarMonth />]
+
+
     return (
         <Box p={4} display={{ xs: 'none', md: 'block' }}>
             <Typography variant='h5' pb={10} > GameBase </Typography>
             <MenuList>
                 <Link underline="none" color='white'> <Typography variant='h5' fontWeight='bold' > Home </Typography> </Link>
-                <NavLink icon={<Whatshot />} title={'All Games'} link={'/'} />
-                <NavLink icon={<Whatshot />} title={'Popular'} link={'/popular'} />
-                <NavLink icon={<Whatshot />} title={'Top Rated'} link={'/top-rated'} />
+                {
+                    games?.map((game, i) => <NavLink key={games.length} icon={<Whatshot />} title={games[i]} link={`games/${game.replace(' ', '-').toLocaleLowerCase()}`} />)
+                }
                 <Typography variant='h5' pt={2} fontWeight='bold'> New Releases </Typography>
+                {
+                    releases?.map((releases, i) => <NavLink key={releases.length} icon={releaseIcons[i]} title={releases} link={`releases/${releases.replace(' ', '-').toLocaleLowerCase()}`} />)
+                }
                 <NavLink icon={<Today />} title={'Next 7 Days'} link={'releases/this-week'} />
                 <NavLink icon={<CalendarMonth />} title={'Next 30 Days'} link={'/this-month'} />
                 <NavLink icon={<CalendarMonth />} title={'This Year'} link={'/this-year'} />

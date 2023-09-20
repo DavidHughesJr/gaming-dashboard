@@ -1,6 +1,6 @@
 import { Box, Stack, Unstable_Grid2 as Grid, Typography, Card, CardContent, CardMedia, CardActions, Button } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress';
-import { useParams } from 'react-router-dom';
+
 
 
 export default function Content({ title, listing }) {

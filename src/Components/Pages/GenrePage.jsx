@@ -7,7 +7,6 @@ import rawgApi, { dates, order } from "../api/rawgConfig";
 function GenrePage() {
 
     const [genreData, setGenreData] = useState([])
-
     const {genre}  = useParams()
 
     useEffect(() => {
@@ -20,9 +19,6 @@ function GenrePage() {
         getGamesData()
 
     }, [genre])
-
-    console.log(genre)
-
 
     return (
         <>
